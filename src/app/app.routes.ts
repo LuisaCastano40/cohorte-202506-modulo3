@@ -9,7 +9,7 @@ import { Register } from './pages/register/register';
 
 export const routes: Routes = [
     {path:'', component: Home, title: 'Inicio' },
-    {path:'admin', component: Admin, title: 'Dashboard' },
+    {path:'dashboard', component: Admin, title: 'Dashboard' },
     {path:'login', component: Login, title: 'Inicio Sesión' },
     {path:'products', component: Products, title: 'Productos' },
     {path:'register', component: Register, title: 'Registro' },

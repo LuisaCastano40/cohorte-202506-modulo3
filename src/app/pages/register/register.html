@@ -1,6 +1,6 @@
 <main>
 
-    <form class="formulario" [formGroup]="registerForm">
+    <form class="formulario" [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
         <h1>Registro</h1>
 
         <!-- nombre completo-->
@@ -11,6 +11,7 @@
                 class="form-control"
                 id="nombre"
                 formControlName="name"
+                placeholder="Ingrese su nombre completo"
             >
         </div>
 
@@ -22,6 +23,8 @@
                 class="form-control"
                 id="username"
                 formControlName="username"
+                autocomplete="username"
+                placeholder="Ingrese su nombre de usuario"
             >
         </div>
 
@@ -33,6 +36,8 @@
                 class="form-control"
                 id="correo"
                 formControlName="email"
+                autocomplete="email"
+                placeholder="Ingrese su correo"
             >
         </div>
 
@@ -44,10 +49,11 @@
                 class="form-control"
                 id="edad"
                 formControlName="age"
+                placeholder="Ingrese su edad"
             >
         </div>
 
-        <!-- contraseña1 -->
+        <!-- contraseña-->
         <div class="mb-3">
             <label for="contrasena" class="form-label">Contraseña</label>
             <input 
@@ -55,6 +61,8 @@
                 class="form-control"
                 id="contrasena"
                 formControlName="password"
+                autocomplete="new-password"
+                placeholder="Ingrese su contraseña"
             >
         </div>
 

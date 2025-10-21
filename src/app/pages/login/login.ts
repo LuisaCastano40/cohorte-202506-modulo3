@@ -21,8 +21,6 @@ export class Login {
     passwordLogin: new FormControl('')
   })
 
-
-
   // manejo de eventos
   handleSubmit() {
     // const email = this.loginForm.value.emailLogin
@@ -65,7 +63,5 @@ export class Login {
         });
       }
     });
-
   }
-
 }

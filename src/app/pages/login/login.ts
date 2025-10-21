@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 // Formularios reactivos -> cada cosa que el usuario escriba sea reconocido por el sistema
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Credencials } from '../../interfaces/credencials';
+import { LoginService } from '../../services/login';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -11,26 +13,58 @@ import { Credencials } from '../../interfaces/credencials';
 })
 export class Login {
 
+  // Variables e injeccion de servicios
+  private _loginService = inject(LoginService);
+
   loginForm = new FormGroup({
     emailLogin: new FormControl(''),
     passwordLogin: new FormControl('')
   })
 
-  
+
 
   // manejo de eventos
-  handleSubmit(){
-    const email = this.loginForm.value.emailLogin
-    const password = this.loginForm.value.passwordLogin
-    console.log(email, password)
+  handleSubmit() {
+    // const email = this.loginForm.value.emailLogin
+    // const password = this.loginForm.value.passwordLogin
+    // console.log(email, password)
 
-    // const credencials : Credencials = {
-    //   emailLogin : this.loginForm.value.emailLogin,
-    //   passwordLogin: this.loginForm.value.passwordLogin
-    // }
+    const credencials: Credencials = {
+      emailLogin: this.loginForm.value.emailLogin || '',
+      passwordLogin: this.loginForm.value.passwordLogin || ''
+    }
 
-    // console.log('Credenciales para Login', credencials);
-    // logica de la petición al back de inicio de sesion
+    console.log('Credenciales para Login', credencials);
+
+    this._loginService.login(credencials).subscribe({
+      // manejo de la respuesta o error
+      next: (res: any) => {
+        console.log(res);
+        if (res) {
+          // guardar el token en el local Storage
+          localStorage.setItem('token', res.token);
+
+          // mensaje de respuesta
+          Swal.fire({
+            title: "Bien!",
+            text:res.mensaje,
+            icon: "success",
+            draggable: true
+          });
+          // redireción
+          this._loginService.redirectTo();
+        }
+      },
+      error: (err: any) => {
+        console.error(err.error.mensaje);
+        Swal.fire({
+          title: "Oops!",
+          text: err.error.mensaje,
+          icon: "error",
+          draggable: true
+        });
+      }
+    });
 
   }
 

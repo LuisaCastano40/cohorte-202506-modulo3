@@ -21,7 +21,7 @@ export const routes: Routes = [
         canActivateChild: [authGuard], //Proteger rutas hijas
         children: [
             {path: 'users', component: Users},
-            {path: 'Inventory', component: Inventory} //title es opcional
+            {path: 'inventory', component: Inventory} //title es opcional
         ]
     },
     { path: 'login', component: Login, title: 'Inicio Sesión' },

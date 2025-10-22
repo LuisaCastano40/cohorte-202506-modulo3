@@ -19,7 +19,7 @@ export class Login {
   // validadores con Angular
   loginForm = new FormGroup({
     emailLogin: new FormControl('', [Validators.required, Validators.email]),
-    passwordLogin: new FormControl('', [Validators.required, Validators.minLength(8)])
+    passwordLogin: new FormControl('', [Validators.required, Validators.minLength(3)])
   })
 
   // manejo de eventos
@@ -27,6 +27,10 @@ export class Login {
     // const email = this.loginForm.value.emailLogin
     // const password = this.loginForm.value.passwordLogin
     // console.log(email, password)
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched(); //poder agregar estilos -> marcamos todos los inputs como activados
+      return;//pare acá y no siga
+    }
 
     const credencials: Credencials = {
       emailLogin: this.loginForm.value.emailLogin || '',
@@ -46,7 +50,7 @@ export class Login {
           // mensaje de respuesta
           Swal.fire({
             title: "Bien!",
-            text:res.mensaje,
+            text: res.mensaje,
             icon: "success",
             draggable: true
           });

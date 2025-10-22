@@ -16,9 +16,10 @@ export class Login {
   // Variables e injeccion de servicios
   private _loginService = inject(LoginService);
 
+  // validadores con Angular
   loginForm = new FormGroup({
-    emailLogin: new FormControl(''),
-    passwordLogin: new FormControl('')
+    emailLogin: new FormControl('', [Validators.required, Validators.email]),
+    passwordLogin: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
 
   // manejo de eventos

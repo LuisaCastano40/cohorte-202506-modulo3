@@ -12,6 +12,7 @@
                 id="nombre"
                 formControlName="name"
                 placeholder="Ingrese su nombre completo"
+                required
             >
         </div>
 
@@ -25,6 +26,7 @@
                 formControlName="username"
                 autocomplete="username"
                 placeholder="Ingrese su nombre de usuario"
+                required
             >
         </div>
 
@@ -38,6 +40,7 @@
                 formControlName="email"
                 autocomplete="email"
                 placeholder="Ingrese su correo"
+                required
             >
         </div>
 
@@ -50,6 +53,7 @@
                 id="edad"
                 formControlName="age"
                 placeholder="Ingrese su edad"
+                required
             >
         </div>
 
@@ -63,9 +67,11 @@
                 formControlName="password"
                 autocomplete="new-password"
                 placeholder="Ingrese su contraseña"
-            >
-        </div>
-
+                >
+            </div>
+            <!-- validaciones vanilla, y formularios basados en plantillas Template Form -->
+            <!-- required
+            minlength="8" -->
         <!-- btn para iniciar sesión -->
         <button type="submit" class="btn">Registrarse</button>
     </form>

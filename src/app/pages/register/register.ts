@@ -17,11 +17,12 @@ export class Register {
   private _router = inject(Router);
 
   registerForm = new FormGroup({
-    name: new FormControl(''),
-    username: new FormControl(''),
-    email: new FormControl(''),
-    age: new FormControl<number | null>(null),
-    password: new FormControl<string>(''),
+    name: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required , Validators.email]),
+    age: new FormControl<number | null>(null), //campo opcional
+    password: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
+    // Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s]).{8,}$/) 
   });
 
   handleSubmit(){
@@ -60,6 +61,10 @@ export class Register {
       }
     });
 
+  }
+
+  validation(){
+    // logica de validaciones propia
   }
 
 

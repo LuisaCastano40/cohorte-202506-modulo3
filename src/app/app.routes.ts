@@ -8,12 +8,24 @@ import { Products } from './pages/products/products';
 import { Register } from './pages/register/register';
 // importar el guardian y esfecificar qué rutas son protegidas
 import { authGuard } from './guards/auth-guard';
+import { Users } from './pages/admin/users/users';
+import { Inventory } from './pages/admin/inventory/inventory';
 
 export const routes: Routes = [
-    {path:'', component: Home, title: 'Inicio' },
-    {path:'dashboard', component: Admin, title: 'Dashboard' , canActivate: [authGuard]},
-    {path:'login', component: Login, title: 'Inicio Sesión' },
-    {path:'products', component: Products, title: 'Productos' },
-    {path:'register', component: Register, title: 'Registro' },
-    {path:'**', component: NotFound, title: '404' },
+    { path: '', component: Home, title: 'Inicio' },
+    {
+        path: 'dashboard',
+        component: Admin,
+        title: 'Dashboard',
+        canActivate: [authGuard],
+        canActivateChild: [authGuard], //Proteger rutas hijas
+        children: [
+            {path: 'users', component: Users},
+            {path: 'Inventory', component: Inventory} //title es opcional
+        ]
+    },
+    { path: 'login', component: Login, title: 'Inicio Sesión' },
+    { path: 'products', component: Products, title: 'Productos' },
+    { path: 'register', component: Register, title: 'Registro' },
+    { path: '**', component: NotFound, title: '404' },
 ];

@@ -14,13 +14,13 @@ import { Inventory } from './pages/admin/inventory/inventory';
 export const routes: Routes = [
     { path: '', component: Home, title: 'Inicio' },
     {
-        path: 'dashboard',
+        path: 'dashboard', // path: 'admin' -> ruta principal
         component: Admin,
         title: 'Dashboard',
         canActivate: [authGuard],
         canActivateChild: [authGuard], //Proteger rutas hijas
         children: [
-            {path: 'users', component: Users},
+            {path: '', component: Users},
             {path: 'inventory', component: Inventory} //title es opcional
         ]
     },
